@@ -1,5 +1,19 @@
-'use client'
+'use client';
 
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { showSubmittedData } from '@/utils/show-submitted-data';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { PasswordInput } from '@/components/password-input';
+import { SelectDropdown } from '@/components/select-dropdown';
+import { userTypes } from '../data/data';
+import { User } from '../data/schema';
+
+<<<<<<< HEAD
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -36,6 +50,19 @@ const formSchema = z
     email: z.email({
       error: (iss) => (iss.input === '' ? 'Email is required.' : undefined),
     }),
+=======
+
+const formSchema = z
+  .object({
+    firstName: z.string().min(1, { message: 'First Name is required.' }),
+    lastName: z.string().min(1, { message: 'Last Name is required.' }),
+    username: z.string().min(1, { message: 'Username is required.' }),
+    // phoneNumber: z.string().min(1, { message: 'Phone number is required.' }),
+    email: z
+      .string()
+      .min(1, { message: 'Email is required.' })
+      .email({ message: 'Email is invalid.' }),
+>>>>>>> c36c00259a765bc5998d134f7fbda3844856353f
     password: z.string().transform((pwd) => pwd.trim()),
     role: z.string().min(1, 'Role is required.'),
     confirmPassword: z.string().transform((pwd) => pwd.trim()),
@@ -120,7 +147,7 @@ export function UsersActionDialog({
           username: '',
           email: '',
           role: '',
-          phoneNumber: '',
+          // phoneNumber: '',
           password: '',
           confirmPassword: '',
           isEdit,
@@ -234,7 +261,7 @@ export function UsersActionDialog({
                   </FormItem>
                 )}
               />
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name='phoneNumber'
                 render={({ field }) => (
@@ -252,7 +279,7 @@ export function UsersActionDialog({
                     <FormMessage className='col-span-4 col-start-3' />
                   </FormItem>
                 )}
-              />
+              /> */}
               <FormField
                 control={form.control}
                 name='role'

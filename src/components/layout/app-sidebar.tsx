@@ -8,9 +8,11 @@ import {
 } from '@/components/ui/sidebar'
 // import { AppTitle } from './app-title'
 import { sidebarData } from './data/sidebar-data'
-import { NavGroup } from './nav-group'
 import { NavUser } from './nav-user'
 import { TeamSwitcher } from './team-switcher'
+import { NavGroup } from './nav-group'
+
+
 
 export function AppSidebar() {
   const { collapsible, variant } = useLayout()
@@ -24,7 +26,7 @@ export function AppSidebar() {
         {/* <AppTitle /> */}
       </SidebarHeader>
       <SidebarContent>
-        {sidebarData.navGroups.map((props) => (
+        {sidebarData?.navGroups?.map((props) => (
           <NavGroup key={props.title} {...props} />
         ))}
       </SidebarContent>

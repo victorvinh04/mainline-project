@@ -21,6 +21,7 @@ import {
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
+  Rss
 } from 'lucide-react'
 import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
@@ -66,6 +67,10 @@ export const sidebarData: SidebarData = {
           title: 'Apps',
           url: '/apps',
           icon: Package,
+        }, {
+          title: 'Blocks',
+          url: '/blocks',
+          icon: Package,
         },
         {
           title: 'Chats',
@@ -101,6 +106,36 @@ export const sidebarData: SidebarData = {
     {
       title: 'Pages',
       items: [
+        {
+          title: 'Blogs',
+          icon: Rss,
+          items: [
+            {
+              title: "All Blogs",
+              url: "/blogs",
+            },
+            {
+              title: "about",
+              url: "/blogs/about",
+            },
+            {
+              title: "contact",
+              url: "/blogs/contact",
+            },
+            {
+              title: "faq",
+              url: "/blogs/faq",
+            },
+            {
+              title: "pricing",
+              url: "/blogs/pricing",
+            },
+            {
+              title: "privacy",
+              url: "/blogs/privacy",
+            },
+          ]
+        },
         {
           title: 'Auth',
           icon: ShieldCheck,

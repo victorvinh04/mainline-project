@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ClerkRouteRouteImport } from './routes/clerk/route'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as BlogsIndexRouteImport } from './routes/blogs/index'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
 import { Route as errors500RouteImport } from './routes/(errors)/500'
@@ -25,11 +26,17 @@ import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-p
 import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_authenticated/route'
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as BlogsPrivacyIndexRouteImport } from './routes/blogs/privacy/index'
+import { Route as BlogsPricingIndexRouteImport } from './routes/blogs/pricing/index'
+import { Route as BlogsFaqIndexRouteImport } from './routes/blogs/faq/index'
+import { Route as BlogsContactIndexRouteImport } from './routes/blogs/contact/index'
+import { Route as BlogsAboutIndexRouteImport } from './routes/blogs/about/index'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
+import { Route as AuthenticatedBlocksIndexRouteImport } from './routes/_authenticated/blocks/index'
 import { Route as AuthenticatedAppsIndexRouteImport } from './routes/_authenticated/apps/index'
 import { Route as ClerkAuthenticatedUserManagementRouteImport } from './routes/clerk/_authenticated/user-management'
 import { Route as ClerkauthSignUpRouteImport } from './routes/clerk/(auth)/sign-up'
@@ -47,6 +54,11 @@ const ClerkRouteRoute = ClerkRouteRouteImport.update({
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsIndexRoute = BlogsIndexRouteImport.update({
+  id: '/blogs/',
+  path: '/blogs/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
@@ -118,6 +130,31 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const BlogsPrivacyIndexRoute = BlogsPrivacyIndexRouteImport.update({
+  id: '/blogs/privacy/',
+  path: '/blogs/privacy/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsPricingIndexRoute = BlogsPricingIndexRouteImport.update({
+  id: '/blogs/pricing/',
+  path: '/blogs/pricing/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsFaqIndexRoute = BlogsFaqIndexRouteImport.update({
+  id: '/blogs/faq/',
+  path: '/blogs/faq/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsContactIndexRoute = BlogsContactIndexRouteImport.update({
+  id: '/blogs/contact/',
+  path: '/blogs/contact/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogsAboutIndexRoute = BlogsAboutIndexRouteImport.update({
+  id: '/blogs/about/',
+  path: '/blogs/about/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
@@ -145,6 +182,12 @@ const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
   path: '/chats/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedBlocksIndexRoute =
+  AuthenticatedBlocksIndexRouteImport.update({
+    id: '/blocks/',
+    path: '/blocks/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAppsIndexRoute = AuthenticatedAppsIndexRouteImport.update({
   id: '/apps/',
   path: '/apps/',
@@ -200,7 +243,6 @@ const AuthenticatedErrorsErrorRoute =
 export interface FileRoutesByFullPath {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
-  '/clerk/': typeof ClerkauthRouteRouteWithChildren
   '/forgot-password': typeof authForgotPasswordRoute
   '/otp': typeof authOtpRoute
   '/sign-in': typeof authSignInRoute
@@ -212,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
+  '/blogs': typeof BlogsIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -221,11 +264,17 @@ export interface FileRoutesByFullPath {
   '/clerk/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
+  '/blocks': typeof AuthenticatedBlocksIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/blogs/about': typeof BlogsAboutIndexRoute
+  '/blogs/contact': typeof BlogsContactIndexRoute
+  '/blogs/faq': typeof BlogsFaqIndexRoute
+  '/blogs/pricing': typeof BlogsPricingIndexRoute
+  '/blogs/privacy': typeof BlogsPrivacyIndexRoute
 }
 export interface FileRoutesByTo {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
@@ -240,6 +289,7 @@ export interface FileRoutesByTo {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
+  '/blogs': typeof BlogsIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -249,11 +299,17 @@ export interface FileRoutesByTo {
   '/clerk/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
+  '/blocks': typeof AuthenticatedBlocksIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/blogs/about': typeof BlogsAboutIndexRoute
+  '/blogs/contact': typeof BlogsContactIndexRoute
+  '/blogs/faq': typeof BlogsFaqIndexRoute
+  '/blogs/pricing': typeof BlogsPricingIndexRoute
+  '/blogs/privacy': typeof BlogsPrivacyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -273,6 +329,7 @@ export interface FileRoutesById {
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/blogs/': typeof BlogsIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -282,18 +339,23 @@ export interface FileRoutesById {
   '/clerk/(auth)/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/_authenticated/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
+  '/_authenticated/blocks/': typeof AuthenticatedBlocksIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
+  '/blogs/about/': typeof BlogsAboutIndexRoute
+  '/blogs/contact/': typeof BlogsContactIndexRoute
+  '/blogs/faq/': typeof BlogsFaqIndexRoute
+  '/blogs/pricing/': typeof BlogsPricingIndexRoute
+  '/blogs/privacy/': typeof BlogsPrivacyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/clerk'
     | '/settings'
-    | '/clerk/'
     | '/forgot-password'
     | '/otp'
     | '/sign-in'
@@ -305,6 +367,7 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
+    | '/blogs'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -314,11 +377,17 @@ export interface FileRouteTypes {
     | '/clerk/sign-up'
     | '/clerk/user-management'
     | '/apps'
+    | '/blocks'
     | '/chats'
     | '/help-center'
     | '/settings/'
     | '/tasks'
     | '/users'
+    | '/blogs/about'
+    | '/blogs/contact'
+    | '/blogs/faq'
+    | '/blogs/pricing'
+    | '/blogs/privacy'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/clerk'
@@ -333,6 +402,7 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/'
+    | '/blogs'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -342,11 +412,17 @@ export interface FileRouteTypes {
     | '/clerk/sign-up'
     | '/clerk/user-management'
     | '/apps'
+    | '/blocks'
     | '/chats'
     | '/help-center'
     | '/settings'
     | '/tasks'
     | '/users'
+    | '/blogs/about'
+    | '/blogs/contact'
+    | '/blogs/faq'
+    | '/blogs/pricing'
+    | '/blogs/privacy'
   id:
     | '__root__'
     | '/_authenticated'
@@ -365,6 +441,7 @@ export interface FileRouteTypes {
     | '/(errors)/500'
     | '/(errors)/503'
     | '/_authenticated/'
+    | '/blogs/'
     | '/_authenticated/errors/$error'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
@@ -374,11 +451,17 @@ export interface FileRouteTypes {
     | '/clerk/(auth)/sign-up'
     | '/clerk/_authenticated/user-management'
     | '/_authenticated/apps/'
+    | '/_authenticated/blocks/'
     | '/_authenticated/chats/'
     | '/_authenticated/help-center/'
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/blogs/about/'
+    | '/blogs/contact/'
+    | '/blogs/faq/'
+    | '/blogs/pricing/'
+    | '/blogs/privacy/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -394,6 +477,12 @@ export interface RootRouteChildren {
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
+  BlogsIndexRoute: typeof BlogsIndexRoute
+  BlogsAboutIndexRoute: typeof BlogsAboutIndexRoute
+  BlogsContactIndexRoute: typeof BlogsContactIndexRoute
+  BlogsFaqIndexRoute: typeof BlogsFaqIndexRoute
+  BlogsPricingIndexRoute: typeof BlogsPricingIndexRoute
+  BlogsPrivacyIndexRoute: typeof BlogsPrivacyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -410,6 +499,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/': {
+      id: '/blogs/'
+      path: '/blogs'
+      fullPath: '/blogs'
+      preLoaderRoute: typeof BlogsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/': {
@@ -498,8 +594,8 @@ declare module '@tanstack/react-router' {
     }
     '/clerk/(auth)': {
       id: '/clerk/(auth)'
-      path: '/'
-      fullPath: '/clerk/'
+      path: ''
+      fullPath: '/clerk'
       preLoaderRoute: typeof ClerkauthRouteRouteImport
       parentRoute: typeof ClerkRouteRoute
     }
@@ -509,6 +605,41 @@ declare module '@tanstack/react-router' {
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/blogs/privacy/': {
+      id: '/blogs/privacy/'
+      path: '/blogs/privacy'
+      fullPath: '/blogs/privacy'
+      preLoaderRoute: typeof BlogsPrivacyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/pricing/': {
+      id: '/blogs/pricing/'
+      path: '/blogs/pricing'
+      fullPath: '/blogs/pricing'
+      preLoaderRoute: typeof BlogsPricingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/faq/': {
+      id: '/blogs/faq/'
+      path: '/blogs/faq'
+      fullPath: '/blogs/faq'
+      preLoaderRoute: typeof BlogsFaqIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/contact/': {
+      id: '/blogs/contact/'
+      path: '/blogs/contact'
+      fullPath: '/blogs/contact'
+      preLoaderRoute: typeof BlogsContactIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blogs/about/': {
+      id: '/blogs/about/'
+      path: '/blogs/about'
+      fullPath: '/blogs/about'
+      preLoaderRoute: typeof BlogsAboutIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/users/': {
       id: '/_authenticated/users/'
@@ -543,6 +674,13 @@ declare module '@tanstack/react-router' {
       path: '/chats'
       fullPath: '/chats'
       preLoaderRoute: typeof AuthenticatedChatsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/blocks/': {
+      id: '/_authenticated/blocks/'
+      path: '/blocks'
+      fullPath: '/blocks'
+      preLoaderRoute: typeof AuthenticatedBlocksIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/apps/': {
@@ -639,6 +777,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
+  AuthenticatedBlocksIndexRoute: typeof AuthenticatedBlocksIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
@@ -650,6 +789,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
+  AuthenticatedBlocksIndexRoute: AuthenticatedBlocksIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
@@ -715,6 +855,12 @@ const rootRouteChildren: RootRouteChildren = {
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
+  BlogsIndexRoute: BlogsIndexRoute,
+  BlogsAboutIndexRoute: BlogsAboutIndexRoute,
+  BlogsContactIndexRoute: BlogsContactIndexRoute,
+  BlogsFaqIndexRoute: BlogsFaqIndexRoute,
+  BlogsPricingIndexRoute: BlogsPricingIndexRoute,
+  BlogsPrivacyIndexRoute: BlogsPrivacyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
